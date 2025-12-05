@@ -1,0 +1,39 @@
+kind: AdaptiveDialog
+modelDescription: "This tool can handle queries like these: What are private loans?, What is the integrity loan?, What scholarships are offered at ORU?, What is the LEAP program?, What is the annual cost tuition?, What degree programs does Oral Roberts Univeristy offer?, How many majors does ORU have?, What are the required classes for {insert major}?, What are the prerequisites courses for {name class}, How many credits are in the {major} program?, Does Oral Roberts University offer online programs?, What is the maximum amount of credit hours I can take per semester?, How do I schedule an academic tutoring appointment?"
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - What are private loans?
+      - What is the integrity loan?
+      - What scholarships are offered at ORU?
+      - What is the LEAP program?
+      - What is the annual cost tuition?
+      - What degree programs does Oral Roberts Univeristy offer?
+      - How many majors does ORU have?
+      - What are the required classes for {insert major}?
+      - What are the prerequisites courses for {name class}
+      - How many credits are in the {major} program?
+      - Does Oral Roberts University offer online programs?
+      - What is the maximum amount of credit hours I can take per semester?
+      - How do I schedule an academic tutoring appointment?
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: DyJ3Wr
+      userInput: =System.Recognizer.TriggeringMessage.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.BibleVerses.xlsx_8mS
+            - cr038_oralRobertsUniversityAgent.file.FAQs1.xlsx_wRQ
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedu_SqqWNJXUz2lSsBwBbZVZT
+
+inputType: {}
+outputType: {}

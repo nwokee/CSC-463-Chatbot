@@ -1,0 +1,21 @@
+kind: AdaptiveDialog
+modelDescription: This topic handles questions regarding important dates and deadlines at Oral Roberts University. It covers start and end dates for classes, holidays (Fall Break, Spring Break, Thanksgiving), final exam schedules, add/drop deadlines, and tuition refund schedules for Residential, Online, and Graduate programs. Use this for queries like 'When does school start?', 'When is finals week?', or 'What is the refund schedule?
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: l8hSp3
+      userInput: =System.Activity.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: DoNotSearchFiles
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.Filegroup1_ajT6IJsREVf0A0aS8Y2KA
+
+inputType: {}
+outputType: {}

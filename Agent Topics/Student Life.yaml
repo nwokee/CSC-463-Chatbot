@@ -1,0 +1,24 @@
+kind: AdaptiveDialog
+modelDescription: This topic handles inquiries regarding campus living and student services at Oral Roberts University. It covers Residential Life (housing, dorms, and move-in details), the Aerobics Center, Student Health services, Counseling, and Campus Safety. It also includes information on student clubs, organizations, and the Student Association. Use this for questions like 'How do I sign up for housing?' or 'Where is the counseling center?
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: wYfnTe
+      userInput: =System.Activity.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: DoNotSearchFiles
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedulifeatoru_eVbbpGCkSfaLzZVnIaNcU
+          - cr038_oralRobertsUniversityAgent.topic.httpsorueduadmissionsinternational_JPfY8K10Ay2jy30GTrqRQ
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedusc4e_fGLkmzNPLZzvHnqaDhphM
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedulifeatoruspirituallife_duS0JNIM9kiNXsf6QrNyB
+
+inputType: {}
+outputType: {}

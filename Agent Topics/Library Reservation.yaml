@@ -1,0 +1,102 @@
+kind: AdaptiveDialog
+modelDescription: "This topic helps a student reserve a library room. It can handle queries like these: make a library reservation, reserve a library room, book a library room, schedule a study group,"
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: Question
+      id: question_pPvT5i
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.GroupSize
+      prompt: I can help you navigate the reservation site to reserve a room. How many people did you want to book the study room for?
+      entity: NumberPrebuiltEntity
+
+    - kind: Question
+      id: question_8c2eFD
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.StudyTime
+      prompt: How long were you looking to get a room for? (in hours)
+      entity: NumberPrebuiltEntity
+
+    - kind: SetVariable
+      id: setVariable_9ccW9h
+      variable: Topic.StudyBlocks
+      value: =RoundUp(Topic.StudyTime * 2,0)
+
+    - kind: SetVariable
+      id: setVariable_0V6C8X
+      variable: Topic.RoomType
+      value: Individual
+
+    - kind: ConditionGroup
+      id: conditionGroup_uNrB87
+      conditions:
+        - id: conditionItem_aioDcu
+          condition: =Topic.GroupSize > 5
+          actions:
+            - kind: SetVariable
+              id: setVariable_9vsvce
+              variable: Topic.RoomType
+              value: Conference
+
+        - id: conditionItem_49evLS
+          condition: =Topic.GroupSize <= 5 && Topic.GroupSize > 2
+          actions:
+            - kind: SetVariable
+              id: setVariable_S8UBgV
+              variable: Topic.RoomType
+              value: Digital Collaboration
+
+    - kind: SetVariable
+      id: setVariable_gBxPCV
+      variable: Topic.GenInput
+      value: |-
+        ="Ideal Room: " & Topic.RoomType &
+        " Blocks to Allocate: " & Topic.StudyBlocks &
+        "Should rebook a second slot afterwards: " & If(Topic.StudyBlocks > 4, "YES", "NO")
+
+    - kind: SearchAndSummarizeContent
+      id: sq7Hcw
+      userInput: =Topic.GenInput
+      additionalInstructions: |-
+        ###ONLY USE STEP 4.5 IF {Topic.StudyBlocks} IS GREATER THAN 4###
+
+        ## Protocol
+        Step 1: Head to [https://library.oru.edu/groupStudyRoom/groupStudyRoom](https://library.oru.edu/groupStudyRoom/groupStudyRoom) and head to the calendar portion
+
+        Step 2: Select the date you want to book the room, and scroll until you find the time you’re looking for.
+
+        Step 3:  Look for a light blue opening next to one of the {Topic.RoomType} rooms (if there is no light blue, it isnt open for the day)
+
+        Step 4: Select the time you wish to check out the room for (in your case, it will be {Topic.StudyTime} minutes after your start time)
+
+        Step 4.5: There’s a maximum of 2 hours per reservation, so if you need more time, complete the rest of the steps and restart the process, starting from 2 hours after your initial start time
+
+        Step 5: Hit **SUBMIT TIMES** and **CONTINUE**
+
+        Step 6: You should be at a form asking for your and your group's information. Simply fill in all the blanks. Enter your group size ({Topic.GroupSize}) and reselect the room you want to reserve.
+
+        Once you hit **SUBMIT MY BOOKING**, you’ll get an email from the library within a few minutes. The verification process is normally very lenient, so as long as they have open space, you should get a reservation confirmation within 10-20 minutes.
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.FAQs1.xlsx_wRQ
+            - cr038_oralRobertsUniversityAgent.file.DepartmentPersonnel.xlsx_Znk
+            - cr038_oralRobertsUniversityAgent.file.ORULibraryReservationSteps.docx_3Fu
+            - cr038_oralRobertsUniversityAgent.file.2025-26AcademicCatalog3.pdf_kr0
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.LibraryReserveaSpaceForm_tIWjqDXG8svSBdUl4jJZy
+          - cr038_oralRobertsUniversityAgent.topic.httpslibraryoruedulibrary_BgnDTWcPHu2isaVPnppom
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedu_SqqWNJXUz2lSsBwBbZVZT
+
+inputType: {}
+outputType: {}

@@ -1,0 +1,38 @@
+kind: AdaptiveDialog
+modelDescription: This topic handles questions specifically about ORU athletics programs and athletic facilities. It includes varsity team information, game schedules, athletic tickets, athlete eligibility, practice facilities, athlete support services, and access to venues like the Mabee Center, Aerobics Center, and baseball/track facilities. Use this only for queries directly involving ORU sports teams, athletic events, or athletic facilities.
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - athletics
+      - sports team
+      - oru basketball
+      - oru baseball
+      - oru soccer
+      - game schedule
+      - sports schedule
+      - athletic tickets
+      - athlete eligibility
+      - practice facility
+      - mabee center
+      - aerobics center
+      - track facility
+      - sports event
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: CC8YV7
+      userInput: =System.Activity.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: DoNotSearchFiles
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.ORUAthletics_Vwg4X36_sh_C0XQrbNOP2
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedulifeatoruhealthandwellness_jM_BR27pqTk94lDfWi8n8
+
+inputType: {}
+outputType: {}

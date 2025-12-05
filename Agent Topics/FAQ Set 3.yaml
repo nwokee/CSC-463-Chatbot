@@ -1,0 +1,35 @@
+kind: AdaptiveDialog
+modelDescription: "This tool can handle queries like these: What graduate programs does ORU offer?, How do I schedule an appointment with my student success coach?, How do I register for classes?, , How do I schedule a counseling appointment?, What clubs are available on campus?, What are the chapel requirements?,"
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - What graduate programs does ORU offer?
+      - How do I schedule an appointment with my student success coach?
+      - How do I register for classes?
+      - What are the admission requirements?
+      - When is the application deadline?
+      - How do I schedule a counseling appointment?
+      - What clubs are available on campus?
+      - What are the chapel requirements?
+      - How do I apply for housing?
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: DyJ3Wr
+      userInput: =System.Recognizer.TriggeringMessage.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.BibleVerses.xlsx_8mS
+            - cr038_oralRobertsUniversityAgent.file.FAQs1.xlsx_wRQ
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedu_SqqWNJXUz2lSsBwBbZVZT
+
+inputType: {}
+outputType: {}

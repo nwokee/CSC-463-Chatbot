@@ -1,0 +1,30 @@
+kind: AdaptiveDialog
+modelDescription: This topic handles all inquiries regarding visiting Oral Roberts University. It covers scheduling in-person tours (Eagle Days, daily visits) and registering for major recruitment events like Quest, Quest Plus, and Arts Quest via the Golden Eagle Community portal. It assists with questions about overnight dorm stays, the Quest Whole Leadership Scholarship competition, travel reimbursement, and virtual tour options. Use this for queries like 'How do I sign up for Quest?', 'Can parents come to the visit?', or 'How do I log in to register?
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: MzSl2r
+      userInput: =System.Activity.Text
+      additionalInstructions: |-
+        You are a Campus Visit Coordinator.
+        1. **Quest vs. General Visits:** Explain the difference between Quest (1-day) and Quest Plus (2-day/overnight) using the uploaded file.
+        2. **ALWAYS Link to Registration:** When a user asks how to apply or register for Quest, you **MUST** provide this direct link: `https://oru.my.site.com/community/s/lt-event?id=a9ZUq0000009m8f`
+        3. **Portal Login:** Remind users that the link goes to the 'Golden Eagle Community' and they must create an account if they don't have one.
+        4. **Scholarships:** Clarify that attending the event is required to compete for the Quest Whole Leadership Scholarship.
+        5. **Formatting:** When providing the link, display it clearly on its own line so it is easy to click.
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.QuestEventInformationFIle.txt_cAl
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsorueducampusvisitation_fg1moZNqiy1T6m4YbIPtz
+
+inputType: {}
+outputType: {}

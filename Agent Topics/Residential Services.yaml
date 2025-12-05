@@ -1,0 +1,50 @@
+kind: AdaptiveDialog
+modelDescription: |-
+  This topic handles questions strictly related to on-campus residence halls and student living spaces at Oral Roberts University. It includes dorm assignments, room amenities, check-in/check-out, move-in and move-out procedures, residence hall policies, roommate requests, and facility issues inside the dorm (maintenance tickets, broken items, AC problems, bathroom issues). It also covers hall-specific concierge functions, such as mail, package pickup, and front desk assistance.
+  Use this only for queries directly involving a student’s room, residence hall, or living space.
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - dorm
+      - res hall
+      - residence hall
+      - room assignment
+      - move in
+      - move out
+      - check in
+      - check out
+      - roommate request
+      - AC not working
+      - maintenance request
+      - work order
+      - bathroom issue
+      - broken furniture
+      - package pickup
+      - mailroom
+      - concierge
+      - front desk hours
+      - RA question
+      - room change
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: CEJYjX
+      userInput: =System.Activity.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.BibleVerses.xlsx_8mS
+            - cr038_oralRobertsUniversityAgent.file.FAQs1.xlsx_wRQ
+            - cr038_oralRobertsUniversityAgent.file.DepartmentPersonnel.xlsx_Znk
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.ORUResidentialServices_SMi5UkdMuaoSXE5KNBufP
+          - cr038_oralRobertsUniversityAgent.topic.httpsorusodexomywaycomenus_ob9Fw1nqTlTKFyMExAqq4
+
+inputType: {}
+outputType: {}

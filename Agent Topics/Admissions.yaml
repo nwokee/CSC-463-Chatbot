@@ -1,0 +1,24 @@
+kind: AdaptiveDialog
+modelDescription: This topic handles all inquiries related to applying to Oral Roberts University. It covers the application process for incoming freshmen, transfer students, and international applicants. It includes details on GPA and test score requirements (ACT/SAT), application deadlines, and transfer credit policies. Use this for questions like 'How do I apply?', 'What is the minimum GPA?', or 'Do you accept transfer credits?
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: DB4urk
+      userInput: =System.Activity.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: DoNotSearchFiles
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsorueduadmissionsvisitcampus_T4tTpEdw0EQljpqRc2lKC
+          - cr038_oralRobertsUniversityAgent.topic.httpsorueduadmissionsconnectwithcounselor_co6hsNzijEY6pTGgs0T
+          - cr038_oralRobertsUniversityAgent.topic.httpsorueduadmissionsapply_3fqJAOLkvfueOEFFEeGGz
+          - cr038_oralRobertsUniversityAgent.topic.httpsorueduadmissionsinternational_JPfY8K10Ay2jy30GTrqRQ
+
+inputType: {}
+outputType: {}

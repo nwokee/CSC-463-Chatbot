@@ -1,0 +1,45 @@
+kind: AdaptiveDialog
+inputs:
+  - kind: AutomaticTaskInput
+    propertyName: IsStudent
+    description: If the user mentions anything about their major, minor, or anything about their classes, this variable will be set to true. If the user mentions their son or daughter, this variable will be set to false
+    entity: BooleanPrebuiltEntity
+    shouldPromptUser: true
+
+modelDescription: "This topic activates when a user mentions: my class, my major, my minor, my teacher, my exam, or my son, my daughter, my student"
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - class
+      - major
+      - minor
+      - teacher
+      - exam
+      - test
+      - son
+      - daughter
+      - child
+      - student
+
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_OFNwF2
+      conditions:
+        - id: conditionItem_M8LGSA
+          condition: =System.LastMessage.Text in "major"
+
+    - kind: SetVariable
+      id: setVariable_ydtzNE
+      variable: Global.isStudent
+      value: =Topic.IsStudent
+
+inputType:
+  properties:
+    IsStudent:
+      displayName: IsStudent
+      description: If the user mentions anything about their major, minor, or anything about their classes, this variable will be set to true. If the user mentions their son or daughter, this variable will be set to false
+      type: Boolean
+
+outputType: {}

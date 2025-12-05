@@ -1,0 +1,25 @@
+kind: AdaptiveDialog
+modelDescription: This topic provides information regarding financial aid at Oral Roberts University. It covers inquiries about FAFSA submission, tuition assistance, available scholarships, federal and private grants, student loans, and important financial deadlines. It answers questions such as 'How do I pay for college?' or 'What is my financial aid status?
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: se5pV6
+      userInput: =System.Activity.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.FAQs1.xlsx_wRQ
+            - cr038_oralRobertsUniversityAgent.file.ORUSiteLinks2.xlsx_CxN
+            - cr038_oralRobertsUniversityAgent.file.DepartmentDirectory.xlsx_Mi8
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedu_SqqWNJXUz2lSsBwBbZVZT
+
+inputType: {}
+outputType: {}

@@ -1,0 +1,31 @@
+kind: AdaptiveDialog
+modelDescription: "This topic responds to queries such as: give me a verse about, can I have a verse on, I need a verse for, give me bible verses"
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - verse
+      - verse about
+      - Bible
+      - a word
+      - passage
+      - quote in the bible
+      - book of
+      - scripture
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: I0SvYN
+      userInput: =System.LastMessage.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.BibleVerses.xlsx_8mS
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+
+inputType: {}
+outputType: {}

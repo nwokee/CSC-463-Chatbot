@@ -1,0 +1,40 @@
+kind: AdaptiveDialog
+modelDescription: This topic handles technical support questions related to ORU accounts, campus technology, and digital services. It includes login issues, password resets, Wi-Fi problems, email access, D2L issues, computer troubleshooting, and connecting personal devices to ORU’s network. Use this only for queries involving technology, accounts, devices, or digital access.
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - wifi issue
+      - password reset
+      - can’t log in
+      - d2l not working
+      - email not working
+      - oru email
+      - tech support
+      - it help
+      - computer issue
+      - connect to wifi
+      - network issue
+      - printing problem
+      - account locked
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: D9Kkhy
+      userInput: =System.Activity.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.FAQs1.xlsx_wRQ
+            - cr038_oralRobertsUniversityAgent.file.DepartmentPersonnel.xlsx_Znk
+            - cr038_oralRobertsUniversityAgent.file.ORUSiteLinks2.xlsx_CxN
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedu_SqqWNJXUz2lSsBwBbZVZT
+
+inputType: {}
+outputType: {}

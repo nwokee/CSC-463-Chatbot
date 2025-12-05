@@ -1,0 +1,35 @@
+kind: AdaptiveDialog
+modelDescription: "This tool can handle queries like these: How do I apply for financial aid?, What is the FAFSA school code for ORU?, What is FAFSA and Should I Complete It, What Types of Federal Financial Aid Are Available Through FAFSA?, What are the steps to receive Federal Aid from ORU?, What if I need Help Completing the FAFSA?, What is FAFSA verification?, What is professional judgement?, What is the priority deadline for financial aid?"
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent:
+    triggerQueries:
+      - How do I apply for financial aid?
+      - What is the FAFSA school code for ORU?
+      - What is FAFSA and Should I Complete It
+      - What Types of Federal Financial Aid Are Available Through FAFSA?
+      - What are the steps to receive Federal Aid from ORU?
+      - What if I need Help Completing the FAFSA?
+      - What is FAFSA verification?
+      - What is professional judgement?
+      - What is the priority deadline for financial aid?
+
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: DyJ3Wr
+      userInput: =System.Recognizer.TriggeringMessage.Text
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.BibleVerses.xlsx_8mS
+            - cr038_oralRobertsUniversityAgent.file.FAQs1.xlsx_wRQ
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpsoruedu_SqqWNJXUz2lSsBwBbZVZT
+
+inputType: {}
+outputType: {}

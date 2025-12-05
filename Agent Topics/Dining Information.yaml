@@ -1,0 +1,25 @@
+kind: AdaptiveDialog
+modelDescription: This topic handles questions about dining services, food, and meal plans at Oral Roberts University. It covers operating hours for the Hamill Dining Hall and retail locations (like Chick-fil-A and Moe's), daily menus, meal exchange details, and dietary options. Use this for queries like 'What is for lunch today?' or 'Is the cafeteria open?
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: Ya9gw3
+      userInput: =System.Activity.Text
+      webBrowsing: false
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.DepartmentDirectory.xlsx_Mi8
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr038_oralRobertsUniversityAgent.topic.httpslibraryoruedulibrary_BgnDTWcPHu2isaVPnppom
+          - cr038_oralRobertsUniversityAgent.topic.httpsorusodexomywaycomenus_ob9Fw1nqTlTKFyMExAqq4
+
+inputType: {}
+outputType: {}

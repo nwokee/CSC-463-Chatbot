@@ -1,0 +1,100 @@
+kind: AdaptiveDialog
+inputs:
+  - kind: AutomaticTaskInput
+    propertyName: UserDetail
+    description: "The specific question or detail the user wants to know about the major. Examples include: \"degree plan\", \"course list\", \"career outlook\", or \"GPA requirements\""
+    entity: StringPrebuiltEntity
+    shouldPromptUser: true
+    inputSettings: {}
+
+  - kind: AutomaticTaskInput
+    propertyName: TargetMajor
+    description: The specific academic major or degree program the user is asking about. Even if the user replies with a full sentence like "I am interested in Nursing," capture the intent. If the user just says "my major" or "a major" without naming a specific one, treat this variable as empty.
+    entity: StringPrebuiltEntity
+    shouldPromptUser: true
+    inputSettings:
+      unrecognizedPrompt:
+        activity: What is your major or the major you are interested in?
+        mode: Strict
+
+modelDisplayName: ORU Program Information Helper
+modelDescription: Answers questions about specific academic majors, degree plans, and course requirements.
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: 9tPMDJ
+      displayName: Create generative answers on majors
+      autoSend: true
+      userInput: =System.LastMessage.Text
+      additionalInstructions: "The user is asking about the {Topic.TargetMajor} program. They specifically want to know about {Topic.UserDetail}. Filter the information to answer ONLY that specific question. Format the response clearly using Bullet Points for lists and Bold Text for key requirements. If the answer involves numbers (like credits or GPA), put them in bold. If you cannot find specific information about the requested major in the knowledge base, clearly state: 'I could not find details for that specific program in the current academic catalog.' Do not reask the questions. Do not make up information."
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: SearchSpecificFiles
+          files:
+            - cr038_oralRobertsUniversityAgent.file.DepartmentPersonnel.xlsx_Znk
+            - cr038_oralRobertsUniversityAgent.file.2025-26AcademicCatalog3.pdf_kr0
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+
+    - kind: Question
+      id: question_Fu1Djb
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.Major_Details
+      prompt: Are there any other program questions I can answer for you?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Yes
+              displayName: Yes
+
+            - id: No
+              displayName: No
+
+        displayName: EmbeddedEntity-WSulC9
+
+    - kind: ConditionGroup
+      id: conditionGroup_pljbIM
+      conditions:
+        - id: conditionItem_oG0cMP
+          condition: =Topic.Major_Details = 'cr038_oralRobertsUniversityAgent.topic.MajorInfoTestCopy.main.question_Fu1Djb'.Yes
+          actions:
+            - kind: BeginDialog
+              id: RestartLoop
+              input:
+                binding:
+                  TargetMajor: =Blank()
+                  UserDetail: =Blank()
+
+              dialog: cr038_oralRobertsUniversityAgent.topic.MajorInfoTestCopy
+
+        - id: conditionItem_fizFE9
+          condition: =Topic.Major_Details = 'cr038_oralRobertsUniversityAgent.topic.MajorInfoTestCopy.main.question_Fu1Djb'.No
+          actions:
+            - kind: SendActivity
+              id: sendActivity_8QwRjR
+              activity: Glad I could help! Go Golden Eagles!
+
+            - kind: EndDialog
+              id: phf58D
+
+inputType:
+  properties:
+    TargetMajor:
+      displayName: TargetMajor
+      description: The specific academic major or degree program the user is asking about.
+      type: String
+
+    UserDetail:
+      displayName: UserDetail
+      description: The specific question or detail the user wants to know about the major.
+      type: String
+
+outputType: {}

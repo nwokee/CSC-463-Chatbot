@@ -1,0 +1,78 @@
+kind: AdaptiveDialog
+modelDescription: This tool can all queries that mention the word petition
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: Question
+      id: question_71A08E
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.studentType
+      prompt: I can help you format your petition. First I need to confirm, are you an ORU student?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Undergraduate Student
+              displayName: Undergraduate Student
+
+            - id: Graduate Student
+              displayName: Graduate Student
+
+            - id: Not a Student
+              displayName: Not a Student
+
+    - kind: ConditionGroup
+      id: conditionGroup_ner96i
+      conditions:
+        - id: conditionItem_t1cyMP
+          condition: =Topic.studentType = 'cr038_oralRobertsUniversityAgent.topic.PetitionFormatting.main.question_71A08E'.'Undergraduate Student' || Topic.studentType = 'cr038_oralRobertsUniversityAgent.topic.PetitionFormatting.main.question_71A08E'.'Graduate Student'
+          actions:
+            - kind: SetVariable
+              id: setVariable_EyTpSM
+              variable: Global.isStudent
+              value: true
+
+            - kind: Question
+              id: question_r8PLcI
+              interruptionPolicy:
+                allowInterruption: true
+
+              variable: init:Topic.catalogYear
+              prompt: One more question, when did you start taking classes at ORU?
+              entity: NumberPrebuiltEntity
+
+            - kind: Question
+              id: question_ciPf9M
+              interruptionPolicy:
+                allowInterruption: true
+
+              variable: init:Topic.fullRequest
+              prompt: Got it, now we can format this petition for you to submit. What type of petition are you trying to fill out?
+              entity: StringPrebuiltEntity
+
+            - kind: SearchAndSummarizeContent
+              id: 01n5j6
+              variable: Topic.petitionType
+              userInput: =Topic.fullRequest
+              fileSearchDataSource:
+                searchFilesMode:
+                  kind: SearchSpecificFiles
+                  files:
+                    - cr038_oralRobertsUniversityAgent.file.oru_petition_keywords.xlsx_O01
+                    - cr038_oralRobertsUniversityAgent.file.ORUPetitionSteps.docx_x_q
+
+              knowledgeSources:
+                kind: SearchSpecificKnowledgeSources
+
+      elseActions:
+        - kind: SendActivity
+          id: sendActivity_MD5Anj
+          activity: Unfortunately only students are able to submit a petition.
+
+inputType: {}
+outputType: {}
