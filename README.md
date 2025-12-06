@@ -122,7 +122,7 @@ Alternatively, if you do not want to scrape, we have provided our scraped data i
    - For multi-file sets (e.g., Academic Calendars), toggle Group these files
 4. Add a description and instructions for each group to guide retrieval and ensure accurate responses
 5. Add any additional relevant files you may want to use
-   - For links, ensure that the link does not exceed a nested path of more than 2 (https://oru.edu/life-at-oru/housing-and-dining/faq would be dissallowed, but https://oru.edu/life-at-oru/housing-and-dining is fair game)
+   - For links, ensure that the link does not exceed a nested path of more than 2 (oru.edu/life-at-oru/housing-and-dining/faq would be disallowed, but oru.edu/life-at-oru/housing-and-dining is fair game)
 
 
 ## Topic Setup
