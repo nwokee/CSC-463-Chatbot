@@ -196,10 +196,11 @@ class OpenBibleScraper:
 
 if __name__ == "__main__":
     scraper = OpenBibleScraper(delay=2)
+    verse_ct = 30
 
     scraper.get_keywords('keywords.csv')    
     print(list(scraper.topic_keywords.keys()))
     topics = list(scraper.topic_keywords.keys())
-    verses = scraper.scrape_multiple_topics(topics, max_verses_per_topic=30)
+    verses = scraper.scrape_multiple_topics(topics, max_verses_per_topic=verse_ct)
     print(f"Total verses scraped: {len(verses)}")
     scraper.save_to_csv(verses, 'bible_verses_output.csv')
