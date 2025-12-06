@@ -2,7 +2,7 @@
 
 ## Description
 
-This project contains a fully configured Copilot Studio agent built for Biblical sentiment analysis and Oral Roberts University (ORU) student support. It includes the agent instructions, knowledge base files, all custom topics, a Bible verse scraping tool, and evaluation test sets. The agent is designed to give accurate, context-aware responses supplemented with relevant scripture, engaging primarily with Christian college students.
+This project contains a fully configured Copilot Studio agent built for Biblical sentiment analysis and Oral Roberts University (ORU) student support. It includes the agent instructions, knowledge base files, all custom topics, a Bible verse scraping tool, and evaluation test sets. The agent is designed to give accurate, context-aware responses supplemented with relevant scripture, engaging primarily with people affiliated with ORU.
 
 ## File Organization
 
