@@ -170,7 +170,7 @@ A Topic is an independent conversational flow triggered by user intent. Each Top
 Due to the complexity of creating topics from scratch, all flowchart code has been exported to `.yaml` files in the `/topics` folder:
 
 1. Create a new topic from blank
-2. Open the code editor (click the 3 dots → **Edit code**)
+2. Open the code editor (click the 3 dots → **Open code editor**)
 3. Paste in the corresponding YAML file contents from the `/topics` folder
 4. Save and repeat for each topic in alphabetical order
 
