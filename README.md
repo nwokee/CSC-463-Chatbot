@@ -21,7 +21,7 @@ Final Project Documentation for our Copilot Agent with Biblical Sentiment Analys
 **Overview Section - Instructions:**
 
 1. Navigate to the Instructions Section
-2. Enter bot instructions into the respective window from `Instructions.txt`
+2. Enter bot instructions into the respective window from `Agent Prompt.txt`
 3. The Instructions are the base prompt for every interaction and give the Agent its identity:
    - Overall Role
    - Tone and Behavior
