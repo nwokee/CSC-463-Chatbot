@@ -1,0 +1,30 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnUnknownIntent
+  id: main
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_LktzXw
+      conditions:
+        - id: conditionItem_66mgxW
+          condition: =System.Activity.Text in "Thanks, Thank you, Thanks a lot, Appreciate it, Really appreciate that, Thanks so much, Thanks man, Thanks bro, Thanks dude, You’re the best, Big thanks, Much appreciated, Thanks a ton, Thanks a million, You made my day, I owe you one, That means a lot, Couldn’t have done it without you, You’re awesome, Super grateful, You rock, So kind of you, Thank you for your help, I really appreciate your support, Many thanks for your time, I truly appreciate your assistance, Thank you very much, I’m grateful for your help, I appreciate your prompt response, Sincere thanks for your effort, I appreciate your kindness, Thank you for your understanding, OMG thank you so much, I can’t thank you enough, Seriously thank you, So grateful right now, That means the world to me, You have no idea how much that helped, I’m beyond thankful, Forever grateful, You just saved my day, Can’t express how thankful I am"
+          actions:
+            - kind: SendActivity
+              id: sendActivity_9tQDEC
+              activity:
+                text:
+                  - Anytime, Golden Eagle! 🦅 Keep shining and pursuing excellence in all you do.
+                  - You’re so welcome! We’re glad to serve you - blessings from ORU.
+                  - Our pleasure! Thanks for connecting with ORU — we’re excited for all that’s ahead.
+
+        - id: conditionItem_DyB3Vc
+          condition: =System.FallbackCount < 3
+          actions:
+            - kind: SendActivity
+              id: sendActivity_93f3h0
+              activity: I'm sorry, I'm not sure how to help with that. Can you try rephrasing?
+
+      elseActions:
+        - kind: BeginDialog
+          id: 5aXj5M
+          dialog: cr038_oralRobertsUniversityAgent.topic.Escalate
