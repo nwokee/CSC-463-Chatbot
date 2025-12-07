@@ -1,5 +1,28 @@
 # CSC-463 Copilot Agent - Comprehensive README
 
+## Authorship, AI Assistance, and External Tools 
+
+This repository was created as a final project for CSC‑463 at Oral Roberts University. The project team is responsible for the overall design of the agent, the selection of topics, the construction of the knowledge base, and the testing/evaluation process. 
+
+### Use of Generative AI Tools 
+During development, the team used generative AI tools (such as online agents like Perplexity Comet and/or large language models like ChatGPT / Microsoft Copilot) in the following ways: 
+- To help draft and edit portions of this README and other documentation, including some setup steps, topic descriptions, and instructions. 
+- To suggest wording for parts of the agent system prompt (`prompt.txt`) and for generating keywords and descriptions contained in the `/topics` YAML files. 
+- To provide code suggestions and refactoring ideas for the Python OpenBible verse scraper (`openbiblescraper.py`) and related scripts. 
+- To brainstorm or refine some example user prompts and evaluation items in the `/evaluation-sets` CSV files. All AI-generated or AI-suggested content was **reviewed, edited, and validated by the project authors** for correctness, alignment with course requirements, and consistency with ORU policies and values. 
+
+### What Was Not Delegated to AI 
+The following aspects of the project were not simply turned over to an AI tool and required substantial human decision-making: 
+- Selection and curation of ORU-specific documents and links for the knowledge base. 
+- Design of which Topics to include and how they should route user intents. 
+- Definition of the high-level agent behavior and the integration of Biblical sentiment analysis with practical ORU information. 
+- Interpretation and use of evaluation results to improve the agent. 
+
+Any remaining errors, omissions, or misstatements are the responsibility of the student authors, not the AI tools. More information on how AI was used in each project file can be found under `AI_USAGE.md`
+
+
+
+
 ## Description
 
 This project contains a fully configured Copilot Studio agent built for Biblical sentiment analysis and Oral Roberts University (ORU) student support. It includes the agent instructions, knowledge base files, all custom topics, a Bible verse scraping tool, and evaluation test sets. The agent is designed to give accurate, context-aware responses supplemented with relevant scripture, engaging primarily with people affiliated with ORU.
@@ -278,6 +301,12 @@ The evaluation CSV files include:
    - Knowledge retrieval correctness
    - Verse alignment and relevance
    - Failure cases and recommended fixes
+
+## Sources and Institutional Content 
+
+Many of the topics and knowledge-base files in this project describe real policies, dates, and procedures at Oral Roberts University (ORU), such as academic calendars, admissions processes, financial aid information, housing & dining details, library reservations, and program descriptions. The **authoritative sources** for that information are official ORU webpages and documents (e.g., Academic Calendars, Catalogs, Financial Aid pages, Athletics, and Library sites), the names of which are reflected in the file titles in `/agent-info/knowledge-base` and related folders. This repository does **not** replace those official sources, and any discrepancies between the chatbot responses and official ORU publications should be resolved in favor of the official ORU documents.
+
+
 
 ## Additional Information
 

@@ -1,3 +1,13 @@
+#               AI Assistance 
+# --------------------------------------------------- 
+# The project team used Claude Sonnet 4.5 as a
+# a coding assistant for this scraper, specifically 
+# with html handling and implementing the correct 
+# libraries. The project team then modified, tested, 
+# and debugged the script to ensure it correctly 
+# retrieves and structures verse metadata 
+# from OpenBible.info for use in the knowledge base.
+
 import requests
 from bs4 import BeautifulSoup # type: ignore
 import csv
